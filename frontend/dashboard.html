@@ -1,0 +1,59 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SecureCloud – Dashboard</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"><link rel="stylesheet" href="css/styles.css"></head><body>
+<div class="app">
+<aside class="side" id="side"><a class="brand" href="index.html"><span class="lg-i"><i data-ic="cloud"></i></span>SecureCloud</a>
+<button class="nav on" data-view="overview"><i data-ic="home"></i>Overview</button>
+<button class="nav" data-view="files"><i data-ic="folder"></i>My Files</button>
+<button class="nav" data-view="recent"><i data-ic="clock"></i>Recent Files</button>
+<button class="nav" data-view="categories"><i data-ic="layers"></i>File Categories</button>
+<button class="nav" data-view="security"><i data-ic="shield"></i>Security</button>
+<button class="nav" data-view="settings"><i data-ic="user"></i>Account Settings</button>
+<div class="quota"><b>Storage</b><div class="meter"><i id="qbar" style="width:0"></i></div><span id="qtxt" class="muted">Loading…</span></div></aside>
+<div class="scrim" id="scrim"></div>
+<div>
+<header class="top"><button class="icon" id="burger" aria-label="Open menu"><i data-ic="menu"></i></button>
+<div class="search"><i data-ic="search"></i><input id="q" type="search" placeholder="Search files by name…" aria-label="Search files"></div><span class="sp"></span>
+<button class="btn" id="upBtn"><i data-ic="upload"></i><span>Upload File</span></button>
+<div class="menu"><button class="avatar" id="avatar" aria-haspopup="true" aria-label="Account menu"></button>
+<div class="pop" id="pop" hidden><div class="who"><b id="pName"></b><br><small id="pMail"></small></div>
+<button class="nav" data-view="settings"><i data-ic="user"></i>Account settings</button><button class="nav" id="logout"><i data-ic="logout"></i>Log out</button></div></div></header>
+<main id="content">
+<section class="view" id="v-overview"><div class="ph"><div><h1 id="hello">Welcome</h1><p>Here is a summary of your cloud storage.</p></div></div>
+<div class="kpis">
+<div class="card kpi"><div class="ibox"><i data-ic="folder"></i></div><div><b id="k1">–</b><span>Total Files</span></div></div>
+<div class="card kpi"><div class="ibox"><i data-ic="cloud"></i></div><div><b id="k2">–</b><span>Total Storage Used</span></div></div>
+<div class="card kpi"><div class="ibox"><i data-ic="list"></i></div><div><b id="k3">–</b><span>Documents Uploaded</span></div></div>
+<div class="card kpi"><div class="ibox"><i data-ic="grid"></i></div><div><b id="k4">–</b><span>Images Uploaded</span></div></div></div>
+<div class="drop" id="drop"><div class="ibox"><i data-ic="upload"></i></div><h3>Drag and drop files here</h3><p>PDF, Word, Excel, PowerPoint, TXT, CSV, PNG and JPG. Up to <span id="maxMb">10</span> MB each.</p>
+<button class="btn" id="browse" type="button">Browse Files</button><input id="fi" type="file" multiple hidden accept=".pdf,.doc,.docx,.txt,.csv,.png,.jpg,.jpeg,.xls,.xlsx,.ppt,.pptx"><div class="ups" id="ups"></div></div>
+<div class="two"><div class="card"><div class="row-sp" style="margin-bottom:14px"><h3 style="margin:0">Recent uploads</h3><button class="lnk" data-view="recent">View all</button></div><div id="ovRecent"></div></div>
+<div class="card"><h3>By category</h3><div class="bars" id="ovBars"></div></div></div></section>
+
+<section class="view" id="v-files" hidden><div class="ph"><div><h1>My Files</h1><p>Search, filter and manage everything you have uploaded.</p></div></div>
+<div class="tools"><select id="fType" aria-label="Filter by type"><option value="">All types</option><option value="document">Documents</option><option value="spreadsheet">Spreadsheets</option><option value="presentation">Presentations</option><option value="image">Images</option></select>
+<select id="fSort" aria-label="Sort"><option value="date-desc">Newest first</option><option value="date-asc">Oldest first</option><option value="name-asc">Name A–Z</option><option value="name-desc">Name Z–A</option><option value="size-desc">Largest first</option><option value="size-asc">Smallest first</option></select>
+<span class="sp"></span><div class="seg"><button id="mList" class="on" aria-label="List view"><i data-ic="list"></i></button><button id="mGrid" aria-label="Grid view"><i data-ic="grid"></i></button></div></div>
+<div id="fileHost"></div><div class="pager"><button class="btn ghost sm" id="prev">Previous</button><span id="pgInfo"></span><button class="btn ghost sm" id="next">Next</button></div></section>
+
+<section class="view" id="v-recent" hidden><div class="ph"><div><h1>Recent Files</h1><p>Your 12 most recent uploads.</p></div></div><div id="recentHost"></div></section>
+<section class="view" id="v-categories" hidden><div class="ph"><div><h1>File Categories</h1><p>Files are grouped automatically by type. Select a category to browse it.</p></div></div><div class="cats" id="catHost"></div></section>
+
+<section class="view" id="v-security" hidden><div class="ph"><div><h1>Security</h1><p>How your account and files are protected.</p></div></div>
+<div class="stack"><div class="card"><h3 style="margin-bottom:14px">Your session</h3><dl class="kv"><dt>Email</dt><dd id="sEmail"></dd><dt>Email verified</dt><dd id="sVer"></dd><dt>Account created</dt><dd id="sCre"></dd><dt>Last sign-in</dt><dd id="sLast"></dd></dl>
+<div style="margin-top:16px" id="verBox"></div></div>
+<div class="card slist"><h3>Protections in place</h3>
+<div class="sitem"><div class="ibox"><i data-ic="key"></i></div><div><h4>Verified sessions</h4><p>Every request is checked by the server against Supabase Auth.</p></div></div>
+<div class="sitem"><div class="ibox"><i data-ic="lock"></i></div><div><h4>Private file storage</h4><p>Files are stored in a private bucket. There are no permanent public links.</p></div></div>
+<div class="sitem"><div class="ibox"><i data-ic="clock"></i></div><div><h4>Expiring download links</h4><p>Each download link works for 60 seconds only.</p></div></div>
+<div class="sitem"><div class="ibox"><i data-ic="shield"></i></div><div><h4>Ownership checks</h4><p>The server only returns, downloads or deletes files that belong to your account.</p></div></div>
+<div class="sitem"><div class="ibox"><i data-ic="check"></i></div><div><h4>Validated uploads</h4><p>File type, size and real content signature are verified on the server.</p></div></div></div></div></section>
+
+<section class="view" id="v-settings" hidden><div class="ph"><div><h1>Account Settings</h1><p>Manage your profile and password.</p></div></div>
+<div class="stack"><div class="card"><h3 style="margin-bottom:14px">Profile</h3><form class="form" id="nameForm"><label>Display name<input id="setName" required maxlength="60"></label><label>Email<input id="setMail" disabled></label><button class="btn" style="justify-self:start">Save changes</button></form></div>
+<div class="card"><h3 style="margin-bottom:6px">Change password</h3><p class="muted" style="margin-bottom:14px">Choose a new password (at least 8 characters).</p><form class="form" id="pwForm"><label>New password<input id="newPw" type="password" minlength="8" autocomplete="new-password" required></label><button class="btn" style="justify-self:start">Update password</button></form></div>
+<div class="card"><h3 style="margin-bottom:6px">Session</h3><p class="muted" style="margin-bottom:14px">Sign out of SecureCloud on this device.</p><button class="btn ghost" id="logout2"><i data-ic="logout"></i>Log out</button></div></div></section>
+</main></div></div>
+<dialog id="dlg"><form method="dialog"><h3>Delete this file?</h3><p><b id="dlgName"></b> will be permanently removed from cloud storage. This cannot be undone.</p>
+<div class="acts" style="display:flex;justify-content:flex-end"><button class="btn ghost" value="no">Cancel</button><button class="btn danger" value="yes">Delete</button></div></form></dialog>
+<div id="toasts" role="status" aria-live="polite"></div>
+<script type="module" src="js/dashboard.js"></script></body></html>

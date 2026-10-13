@@ -1,0 +1,10 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SecureCloud – Create account</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"><link rel="stylesheet" href="css/styles.css"></head><body>
+<div class="auth"><aside class="auth-side"><a class="brand" href="index.html"><span class="lg-i"><i data-ic="cloud"></i></span>SecureCloud</a>
+<div><h2>Private cloud storage for your files.</h2><p>Sign in to upload, search and download your documents from anywhere.</p>
+<ul><li><i data-ic="lock"></i>Private storage, no public links</li><li><i data-ic="shield"></i>Verified sessions on every request</li><li><i data-ic="globe"></i>Works on any device</li></ul></div><small style="color:#64748b">Cloud Computing mini-project</small></aside>
+<main class="auth-main"><div class="auth-box"><h1>Create your account</h1><p class="muted">Start storing your files securely.</p>
+<form id="form" novalidate><label>Full name<input id="name" autocomplete="name" required placeholder="Your name"></label><label>Email<input id="email" type="email" autocomplete="email" required placeholder="you@example.com"></label><label>Password<div class="pw"><input id="password" type="password" minlength="8" autocomplete="new-password" required placeholder="At least 8 characters"><button id="eye" type="button" aria-label="Show password"><i data-ic="eye"></i></button></div></label><label>Confirm password<input id="confirm" type="password" autocomplete="new-password" required placeholder="Repeat password"></label><div id="msg" class="msg" role="alert"></div><button id="submit" class="btn lg" type="submit">Create account</button></form>
+
+<p class="muted" style="text-align:center;margin-top:22px">Already registered? <a class="lnk" href="login.html">Sign in</a></p></div></main></div>
+<script type="module">import {initAuthPage} from './js/auth-ui.js';initAuthPage('register');</script></body></html>
